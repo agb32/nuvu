@@ -27,9 +27,9 @@ ncam=1
 
 ncamThreads=numpy.ones((ncam,),numpy.int32)*1
 npxly=numpy.zeros((ncam,),numpy.int32)
-npxly[:]=128#134  #Email from nuvu says 134, but aravis says 128!
+npxly[:]=134+2  #Email from nuvu says 134 and 2 overscan lines, but aravis says 128!
 npxlx=npxly.copy()
-npxlx[:]=128#136
+npxlx[:]=136
 nsuby=npxlx.copy()
 nsuby[:]=30#for config purposes only... not sent to rtc
 nsubx=nsuby.copy()#for config purposes - not sent to rtc
@@ -76,9 +76,13 @@ for k in range(ncam):
     # tot=0#reset for each camera
     for i in range(nsub[k]):
         indx=nsubapsCum[k]+i
+        if subapFlag[indx]:
+            lastSubap=indx
         #n=(subapLocation[indx,1]-1)*npxlx[k]+subapLocation[indx,4]
         n=subapLocation[indx,1]*npxlx[k]#whole rows together...
         pxlCnt[indx]=n
+    print "last subap index:",lastSubap
+    pxlCnt[lastSubap]=npxlx[k]*npxly[k]
 
 #pxlCnt[-5]=128*256
 #pxlCnt[-6]=128*256
@@ -112,7 +116,7 @@ cameraParams[2*ncam:3*ncam]=0#x offset
 cameraParams[3*ncam:4*ncam]=0#y offset
 cameraParams[4*ncam:5*ncam]=npxlx#campxlx
 cameraParams[5*ncam:6*ncam]=npxly#campxly
-cameraParams[6*ncam:7*ncam]=1#byteswapints
+cameraParams[6*ncam:7*ncam]=0#byteswapints
 cameraParams[7*ncam:8*ncam]=0#reorder
 cameraParams[8*ncam:9*ncam]=50#priority
 cameraParams[9*ncam]=1#affin el size
