@@ -112,7 +112,7 @@ cameraParams[2*ncam:3*ncam]=0#x offset
 cameraParams[3*ncam:4*ncam]=0#y offset
 cameraParams[4*ncam:5*ncam]=npxlx#campxlx
 cameraParams[5*ncam:6*ncam]=npxly#campxly
-cameraParams[6*ncam:7*ncam]=0#byteswapints
+cameraParams[6*ncam:7*ncam]=1#byteswapints
 cameraParams[7*ncam:8*ncam]=0#reorder
 cameraParams[8*ncam:9*ncam]=50#priority
 cameraParams[9*ncam]=1#affin el size
@@ -123,7 +123,7 @@ cameraParams[10*ncam+2+(namelen+3)//4]=0#record timestamp
 
 rmx=numpy.random.random((nacts,ncents)).astype("f")
 
-camCommand="ProgFrameTimeEnable=true;ProgFrameTimeAbs=50000;"
+camCommand=None#"ProgFrameTimeEnable=true;ProgFrameTimeAbs=50000;"
 
 
 control={
@@ -215,5 +215,6 @@ control={
     #"lastActs":numpy.zeros((nacts,),numpy.uint16),
     }
 for i in range(ncam):
-    control["aravisCmd%d"%i]=camCommand
+    if camCommand!=None:
+        control["aravisCmd%d"%i]=camCommand
 #control["pxlCnt"][-3:]=npxls#not necessary, but means the RTC reads in all of the pixels... so that the display shows whole image
