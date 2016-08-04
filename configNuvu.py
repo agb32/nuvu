@@ -127,7 +127,7 @@ cameraParams[10*ncam+2+(namelen+3)//4]=0#record timestamp
 
 rmx=numpy.random.random((nacts,ncents)).astype("f")
 
-camCommand=None#"ProgFrameTimeEnable=true;ProgFrameTimeAbs=50000;"
+camCommand="PixelFormat=Mono16;Uart0BaudRate=Baud115200;GevSCPSPacketSize=8000;"
 
 
 control={
