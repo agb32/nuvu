@@ -1,3 +1,4 @@
+August 2015.
 
 We are ready on our end for the remote Aravis testing on our controller.
 Here some technical info that should be useful for you:
@@ -66,3 +67,35 @@ parameters relating to the readout mode
 Hopefully, everything will go well tomorrow morning and you won't need my
 help. I will check my emails first thing in the morning.
 
+
+
+
+Hi Alastair,
+
+I did not have the information on hand so I had to check with my team. 
+
+We open the serial port with PvDeviceSerial0 not PvDeviceSerialBulk0
+and the PvGenParameterArray properties related to the serial port that we
+set are as follows : 
+
+“Uart0BaudRate” = “Baud115200"
+
+“Uart0NumOfStopBits" = "One"
+
+“Uart0Parity" = “None"
+
+“Uart0Loopback” = false
+
+We will leave the computer and controller (no CCD attached) at your disposal
+as long as you need, so please, contact me when you are finished.
+
+Feel free to email me or call me should you have any question.
+
+
+
+For mac pro in Durham, need to set IP of eth0 to:
+169.254.64.1
+mask 255.255.0.0
+mtu 9000
+To match that returned by:
+arv-tool-0.4 control GevCurrentIPAddress
