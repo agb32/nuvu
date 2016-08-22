@@ -27,7 +27,7 @@ ncam=1
 
 ncamThreads=numpy.ones((ncam,),numpy.int32)*1
 npxly=numpy.zeros((ncam,),numpy.int32)
-npxly[:]=134+2  #Email from nuvu says 134 and 2 overscan lines, but aravis says 128!
+npxly[:]=134#+2  #Email from nuvu says 134 and 2 overscan lines, but aravis says 128!  When using the Windows GUI to put in 20MHz mode, is 134.
 npxlx=npxly.copy()
 npxlx[:]=136
 nsuby=npxlx.copy()
@@ -127,7 +127,8 @@ cameraParams[10*ncam+2+(namelen+3)//4]=0#record timestamp
 
 rmx=numpy.random.random((nacts,ncents)).astype("f")
 
-camCommand="PixelFormat=Mono16;Uart0BaudRate=Baud115200;GevSCPSPacketSize=8000;"
+#camCommand="PixelFormat=Mono16;Uart0BaudRate=Baud115200;GevSCPSPacketSize=8000;"
+camCommand="PixelFormat=Mono16;Uart0BaudRate=Baud115200;GevSCPSPacketSize=8164;R[0xB84C]=114;R[0xB84C]=101;R[0xB84C]=32;R[0xB84C]=45;R[0xB84C]=49;R[0xB84C]=10;"
 
 
 control={
