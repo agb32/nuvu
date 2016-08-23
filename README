@@ -1,3 +1,26 @@
+Progress to date (Aug 2016):
+on dragon, cfai@10.0.2.78 tSRDS
+Lots of reverse engineering, I mostly understand the protocol.
+However, still not entirely sure about arbitrary ROIs.
+
+arv-tool-0.4 control GevCurrentIPAddress
+arv-tool-0.4 control GevSCDA  #where sending stream to.
+
+
+Key thing is to add the re -1 command to aravisCmd:
+R[0xB84C]=114;R[0xB84C]=101;R[0xB84C]=32;R[0xB84C]=45;R[0xB84C]=49;R[0xB84C]=10;
+This then allows the camera to start framing.
+
+So far:
+Configure the camera using windows.  Then close the GUI, and run using
+darc.  Make sure that the width/height match the darc config.
+
+Note, the configNuvu10MHz.py and 20MHz.py were supposed to start the
+camera from scratch (i.e. without requiring windows), but don't seem
+to work.  However, if the camera has already been started with
+windows, they are fine to use - i.e. they don't do any harm.
+
+
 August 2015.
 
 We are ready on our end for the remote Aravis testing on our controller.
