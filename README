@@ -8,18 +8,25 @@ arv-tool-0.4 control GevSCDA  #where sending stream to.
 
 
 Key thing is to add the re -1 command to aravisCmd:
-R[0xB84C]=114;R[0xB84C]=101;R[0xB84C]=32;R[0xB84C]=45;R[0xB84C]=49;R[0xB84C]=10;
+ControlNuvu("").makeCommand("re -1")
 This then allows the camera to start framing.
 
-So far:
-Configure the camera using windows.  Then close the GUI, and run using
-darc.  Make sure that the width/height match the darc config.
+So far: Configure the camera using windows.  Then close the GUI, and
+run using darc.  configNuvu.py automatically makes sure that the
+width/height match the darc config.
 
 Note, the configNuvu10MHz.py and 20MHz.py were supposed to start the
 camera from scratch (i.e. without requiring windows), but don't seem
 to work.  However, if the camera has already been started with
 windows, they are fine to use - i.e. they don't do any harm.
 
+Now, I think configNuvu.py can be used with any setting - it automatically queries the size of the camera.  So: Configure using the nuvu GUI, then use this config file with darc.  Then import controlNuvu to control parameters.
+
+Relevant computers:
+ssh -Y cfai@10.0.2.78
+rdesktop CfAI 10.0.2.231
+
+Cannot change mode without starting NuPixel - e.g. ROI, MHz, etc.
 
 August 2015.
 

@@ -69,7 +69,7 @@ class ControlNuvu:
     def setExposureTime(self,exp):
         """Sets exposure time in ms.  0 is free-running.
         TODO: Check - ms or us?"""
-        self.sendCommand("se %d"%exp)
+        self.sendCommand("se %g"%exp)
 
     def setROI(self,roi):
         """Sets a region of interest.  Note, currently, only specific ones can be set, since I've not worked out how to set them generally... and haven't had enough time to fully reverse engineer."""
@@ -118,6 +118,7 @@ class ControlNuvu:
         self.sendCommand("cdsoffset")
         self.sendCommand("cdsoffset %d"%cdsoffset)
         self.sendCommand("rsrt")
+        self.sendCommand("re -1")
 
     def setClockRateTxt(self,rate):
         """Rate can be 10 or 20.  (in MHz).
@@ -152,6 +153,7 @@ class ControlNuvu:
         txt+=self.makeCommand("cdsoffset")
         txt+=self.makeCommand("cdsoffset %d"%cdsoffset)
         txt+=self.makeCommand("rsrt")
+        txt+=self.makeCommand("re -1")#start it going.
         return txt
 
     def getInitTxt(self):

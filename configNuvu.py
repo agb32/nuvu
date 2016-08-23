@@ -21,15 +21,25 @@ import string
 import FITS
 import tel
 import numpy
+import os
+import traceback
 
 nacts=54#97#54#+256
 ncam=1
 
+try:
+    width=int(os.popen('arv-tool-0.4 -n "Pleora Technologies Inc.-" control Width').read().split("\n")[1].split()[2])
+    height=int(os.popen('arv-tool-0.4 -n "Pleora Technologies Inc.-" control Height').read().split("\n")[1].split()[2])
+except:
+    traceback.print_exc()
+    print "*"*80+"\n\nUnable to get width/height using arv-tool.\nUsing width 136, height 134\n\n"+"*"*80
+    width=136
+    height=134
 ncamThreads=numpy.ones((ncam,),numpy.int32)*1
 npxly=numpy.zeros((ncam,),numpy.int32)
-npxly[:]=134#+2  #Email from nuvu says 134 and 2 overscan lines, but aravis says 128!  When using the Windows GUI to put in 20MHz mode, is 134.
+npxly[:]=height#134#+2  #Email from nuvu says 134 and 2 overscan lines, but aravis says 128!  When using the Windows GUI to put in 20MHz mode, is 134.
 npxlx=npxly.copy()
-npxlx[:]=136
+npxlx[:]=width#136
 nsuby=npxlx.copy()
 nsuby[:]=30#for config purposes only... not sent to rtc
 nsubx=nsuby.copy()#for config purposes - not sent to rtc
@@ -128,7 +138,10 @@ cameraParams[10*ncam+2+(namelen+3)//4]=0#record timestamp
 rmx=numpy.random.random((nacts,ncents)).astype("f")
 
 #camCommand="PixelFormat=Mono16;Uart0BaudRate=Baud115200;GevSCPSPacketSize=8000;"
-camCommand="PixelFormat=Mono16;Uart0BaudRate=Baud115200;GevSCPSPacketSize=8164;R[0xB84C]=114;R[0xB84C]=101;R[0xB84C]=32;R[0xB84C]=45;R[0xB84C]=49;R[0xB84C]=10;"
+import controlNuvu
+c=controlNuvu.ControlNuvu("",0)
+
+camCommand="PixelFormat=Mono16;Uart0BaudRate=Baud115200;GevSCPSPacketSize=8164;"+c.makeCommand("re -1")#R[0xB84C]=114;R[0xB84C]=101;R[0xB84C]=32;R[0xB84C]=45;R[0xB84C]=49;R[0xB84C]=10;"
 
 
 control={
