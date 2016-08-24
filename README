@@ -1,3 +1,8 @@
+NOTE: When powered on, the camera automatically cools to -85.  IT
+CANNOT THEN SIMPLY BE SWITCHED OFF.  Instead, it needs to warm up to
+at least -60.  This can be done using the windows GUI, or darc
+(controlNuvu.py).
+
 Progress to date (Aug 2016):
 on dragon, cfai@10.0.2.78 tSRDS
 Lots of reverse engineering, I mostly understand the protocol.
