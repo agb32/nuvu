@@ -28,6 +28,8 @@ rdesktop CfAI 10.0.2.231
 
 Cannot change mode without starting NuPixel - e.g. ROI, MHz, etc.
 
+Note - part of the configuration for NuPixel appears to be setting a /opt/NuvuCameras/tools/ReconnectPleora.sh script to point to the correct eth interface.  However, when this is set correctly, darc seems to drop many more frames.  So, I suggest this isn't used unless absolutely necessary.
+
 August 2015.
 
 We are ready on our end for the remote Aravis testing on our controller.
