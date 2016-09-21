@@ -191,6 +191,8 @@ class ControlNuvu:
             
 if __name__=="__main__":
     import sys
+    if len(sys.argv)==1:
+        sys.argv.append("help")
     if sys.argv[1]=="temp":
         temp=float(sys.argv[2])
         ControlNuvu("ch").setTemp(temp)
