@@ -189,3 +189,27 @@ class ControlNuvu:
     def closeShutter(self):
         self.sendCommand("ssm -2")
             
+if __name__=="__main__":
+    import sys
+    if sys.argv[1]=="temp":
+        temp=float(sys.argv[2])
+        ControlNuvu("ch").setTemp(temp)
+    elif sys.argv[1]=="exp":
+        exp=float(sys.argv[2])
+        ControlNuvu("ch").setExposureTime(exp)
+    elif sys.argv[1]=="gain":
+        gain=float(sys.argv[2])
+        ControlNuvu("ch").setEMGain(gain)
+    elif sys.argv[1]=="open":
+        ControlNuvu("ch").openShutter()
+    elif sys.argv[1]=="close":
+        ControlNuvu("ch").closeShutter()
+    elif sys.argv[1]=="help":
+        print """Usage: %s OPTION
+Where OPTION can be:
+temp VAL (set the temperature)
+exp VAL (set the exposure, in us)
+gain VAL (set the EM gain from 1-5000)
+open (open the shutter)
+close (close the shutter)
+"""%sys.argv[0]
