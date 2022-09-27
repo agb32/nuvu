@@ -1,10 +1,18 @@
+# Information about using nuvu with darc
+
+License Copyright: Copyright © 2015-now Alastair Basden
+License License: "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed." (www.gnu.org/licenses/gpl-3.0.en.html).
+License Contact: Free Software Foundation (fsf.org).
+
+This reads a bit like a story - info was added gradually as we got it working.  
+
 NOTE: When powered on, the camera automatically cools to -85.  IT
 CANNOT THEN SIMPLY BE SWITCHED OFF.  Instead, it needs to warm up to
 at least -60.  This can be done using the windows GUI, or darc
 (controlNuvu.py).
 
 Progress to date (Aug 2016):
-on dragon, cfai@10.0.2.78 tSRDS
+on dragon, cfai@10.0.2.78 
 Lots of reverse engineering, I mostly understand the protocol.
 However, still not entirely sure about arbitrary ROIs.
 
